@@ -8,8 +8,8 @@
 
 
 int main() {
-	// char* str = "Hello, world";
-	// printstr(0xFFFFFF, 0,  0, str);
+	char* str = "Hello, world";
+	printstr(0xFFFFFF, 0,  0, str);
 	// printstr(0xFF0000, 0, 10, str);
 	// printstr(0x00FF00, 0, 20, str);
 	// printstr(0x0000FF, 0, 30, str);
