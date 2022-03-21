@@ -1,9 +1,6 @@
 #include "output.h"
 #include "csr.h"
 #include "typedef.h"
-// #include "memcpy.h"
-
-// #include "merge_sort/merge_sort.cc"
 
 u8 RED[] = {32, 128, 32, 224};
 u8 GREEN[] = {32, 96, 64, 192};

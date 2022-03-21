@@ -1,3 +1,6 @@
+#ifndef CSR_H
+#define CSR_H
+
 #define csr_write(csr, val)                                    \
 ({                                                             \
        unsigned long __v = (unsigned long)(val);               \
@@ -12,3 +15,5 @@
                              : "=r" (__v));                    \
        __v;                                                    \
 })
+
+#endif

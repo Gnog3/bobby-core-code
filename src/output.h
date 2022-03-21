@@ -1,3 +1,6 @@
+#ifndef OUTPUT_H
+#define OUTPUT_H
+
 #include "csr.h"
 #include "typedef.h"
 
@@ -44,4 +47,4 @@ inline void plotpix(int color, int x, int y)
 	csr_write(1034, pos);
 }
 
-
+#endif
