@@ -11,7 +11,7 @@
 #define csr_read(csr)                                          \
 ({                                                             \
        register unsigned long __v;                             \
-       __asm__ __volatile__ ("csrr %0, " #csr                  \
+       __asm__ __volatile__ ("csrrw %0, " #csr ", zero"        \
                              : "=r" (__v));                    \
        __v;                                                    \
 })

@@ -5,10 +5,10 @@ def exit_if_error(r):
 		print(f'Exit with code {r}')
 		exit(r)
 
-compiler = 'riscv-none-embed-gcc -T risc.ld -nostdlib -march=rv32i -mabi=ilp32 -ffunction-sections -fdata-sections -Wl,--gc-sections -O3 -mcmodel=medany '
+compiler = 'riscv-none-embed-gcc -T risc.ld -nostdlib -march=rv32i -mabi=ilp32 -ffunction-sections -fdata-sections -Wl,--gc-sections -mcmodel=medany -O3 '
 for dirpath, dirnames, filenames in os.walk('src'):
 	for filename in filenames:
-		if filename[-2::] != '.c':
+		if filename[-2::] not in ['.c', '.s']:
 			print('Skipping ' + filename)
 			continue
 		file_fullpath = f'{dirpath}/{filename}'
