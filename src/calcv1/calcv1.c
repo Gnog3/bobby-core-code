@@ -3,14 +3,7 @@
 #include "calcv1.h"
 #include "../output.h"
 #include "../input.h"
-
-#define ASCII_0 0x30
-#define ASCII_1 0x31
-#define ASCII_2 0x32
-#define ASCII_3 0x33
-#define ASCII_4 0x34
-
-#define KEY_ENTER 0x10
+#include "../keydefs.h"
 
 #define ADDITION ASCII_1
 #define SUBTRACTION ASCII_2
@@ -100,9 +93,10 @@ void calc_v1() {
         u8 operation;
         while (1) {
             u8 key = require_key();
-            if (key >= ASCII_1 && key <= ASCII_3)
+            if (key >= ASCII_1 && key <= ASCII_3) {
                 operation = key;
-            break;
+                break;
+            }
         }
         term_print(0, 40, "First number: ");
         int number1 = require_number();
