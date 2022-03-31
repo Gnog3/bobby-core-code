@@ -25,7 +25,6 @@ void logo() {
 			plotpix(color, x, y);
 		}
 	}
-
-	char* str = "BobbyCore booting up...";
-	printstr(0xFFFFFF, 0,  66, str);
+	term_color(0xFFFFFF);
+	term_print(0, 66, "BobbyCore booting up...");
 }

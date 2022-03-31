@@ -4,9 +4,10 @@
 #include "typedef.h"
 #include "keytest/keytest.h"
 #include "riscvlogo/riscvlogo.h"
+#include "calcv1/calcv1.h"
 
 int main() {
-	logo();
+	calc_v1();
 
 	return 0;
 }
