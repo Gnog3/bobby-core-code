@@ -17,37 +17,33 @@
 #define MULTIPLICATION ASCII_3
 #define DIVISION ASCII_4
 
-
-
 u8 require_key() {
-	while (1) {
-		u8 key = read_key();
-		bool pressed = key >> 7;
-		bool enter = key == 0b10010000;
-		bool digit = (key >= 0b10110000) && (key <= 0b10111001);
-		if (pressed && (enter || digit)) {
-			return key & 0b01111111;
-		}
-	}
+    while (1) {
+        u8 key = read_key();
+        bool pressed = key >> 7;
+        bool enter = key == 0b10010000;
+        bool digit = (key >= 0b10110000) && (key <= 0b10111001);
+        if (pressed && (enter || digit)) {
+            return key & 0b01111111;
+        }
+    }
 }
 
-
-
 int require_number() {
-	int number = 0;
-	char str[2];
-	str[1] = 0;
-	while (1) {
-		u8 key = require_key();
-		if (key == KEY_ENTER) {
-			return number;
-		} else {
-			str[0] = key;
-			term_print_raw(str);
-			number = (number << 3) + (number << 1); // multiply by 10
-			number += key & 0b1111;
-		}
-	}
+    int number = 0;
+    char str[2];
+    str[1] = 0;
+    while (1) {
+        u8 key = require_key();
+        if (key == KEY_ENTER) {
+            return number;
+        } else {
+            str[0] = key;
+            term_print_raw(str);
+            number = (number << 3) + (number << 1); // multiply by 10
+            number += key & 0b1111;
+        }
+    }
 }
 
 u32 bin_to_bcd(u32 number) {
@@ -72,14 +68,14 @@ u32 bin_to_bcd(u32 number) {
 }
 
 void print_number(u32 number) {
-	u32 bcd = bin_to_bcd(number);
-	char str[11];
-	for (int d = 0; d < 10; d++) {
-		u8 digit = (bcd >> (d << 2)) & 0b1111;
-		u8 ascii = digit | 0x30;
-		str[9 - d] = ascii;
-	}
-	str[10] = 0;
+    u32 bcd = bin_to_bcd(number);
+    char str[11];
+    for (int d = 0; d < 10; d++) {
+        u8 digit = (bcd >> (d << 2)) & 0b1111;
+        u8 ascii = digit | 0x30;
+        str[9 - d] = ascii;
+    }
+    str[10] = 0;
     char* str_ptr = str;
     if (number == 0) {
         str_ptr += 9;
@@ -88,7 +84,7 @@ void print_number(u32 number) {
             ++str_ptr;
         }
     }
-	term_print_raw(str_ptr);
+    term_print_raw(str_ptr);
 }
 
 void calc_v1() {
