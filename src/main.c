@@ -5,11 +5,11 @@
 #include "keytest/keytest.h"
 #include "riscvlogo/riscvlogo.h"
 #include "calcv1/calcv1.h"
-
+#include "keys/keys.h"
 int main() {
     clear_screen();
 
-    calc_v1();
+    input(0, 0);
 
 	return 0;
 }

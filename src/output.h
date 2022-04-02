@@ -57,11 +57,17 @@ inline void drawtriangle(int color, int posx0, int posy0, int posx1, int posy1, 
 	csr_write(1032, onepnt);	
 }
 
-inline void plotpix(int color, int x, int y)
-{
-	csr_write(1033, color);
-	int pos = (y << 8) | x ;
-	csr_write(1034, pos);
+inline void pixel_color(u32 color) {
+    csr_write(1033, color);
+}
+
+inline void pixel_plot_raw(u16 pos) {
+    csr_write(1034, pos);
+}
+
+inline void pixel_plot(u8 x, u8 y) {
+    u16 pos = (y << 8) | x;
+    pixel_plot_raw(pos);
 }
 
 inline void debug(int value) {

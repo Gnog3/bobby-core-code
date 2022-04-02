@@ -8,6 +8,11 @@ _Alignas(4) u8 FIRST[40] = {0};
 _Alignas(4) u8 SECOND[40] = {0};
 _Alignas(4) u8 RESULT[40] = {0};
 
+void require_number_(u8 arr[40]) {
+    char str[2];
+    str[1] = 0;
+
+}
 
 void calc_v1_1() {
 #pragma clang diagnostic push
@@ -28,6 +33,7 @@ void calc_v1_1() {
                 break;
             }
         }
+
 
     }
 #pragma clang diagnostic pop
