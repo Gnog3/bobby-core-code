@@ -21,26 +21,26 @@ exit_if_error(r)
 r = os.system("riscv-none-embed-objcopy -O binary a.out program.bin")
 exit_if_error(r)
 
-r = os.system("riscv-none-embed-objdump -b binary -m riscv -D program.bin")
-exit_if_error(r)
+# r = os.system("riscv-none-embed-objdump -b binary -m riscv -D program.bin")
+# exit_if_error(r)
 
-with open('program.bin', 'rb') as f:
-	data = f.read()
+# with open('program.bin', 'rb') as f:
+# 	data = f.read()
 
-ROM = ["", "", "", ""]
+# ROM = ["", "", "", ""]
 
-c = 3
+# c = 3
 
-for b in data:
-	h = hex(b)[2:].upper()
-	if len(h) == 1:
-		h = '0' + h
-	ROM[c] += h
+# for b in data:
+# 	h = hex(b)[2:].upper()
+# 	if len(h) == 1:
+# 		h = '0' + h
+# 	ROM[c] += h
 
-	if c == 0:
-		c = 3
-	else:
-		c -= 1
+# 	if c == 0:
+# 		c = 3
+# 	else:
+# 		c -= 1
 
-for i in range(4):
-	print(f'{i}: {ROM[i]}')
+# for i in range(4):
+# 	print(f'{i}: {ROM[i]}')

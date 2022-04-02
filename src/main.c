@@ -7,7 +7,9 @@
 #include "calcv1/calcv1.h"
 
 int main() {
-	calc_v1();
+    clear_screen();
+
+    calc_v1();
 
 	return 0;
 }
