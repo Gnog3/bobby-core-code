@@ -1,11 +1,12 @@
-#include "../input.h"
-#include "../output.h"
-#include "../keydefs.h"
+#include "../lib/input.h"
+#include "../lib/output.h"
+#include "../lib/keydefs.h"
 #include <stdbool.h>
-char DATAF[256];
+
+char KEYS_DATA[256];
 #define CURSOR_COLOR 0xFFFF00
 
-u8 require_key_() {
+u8 keys_require_key() {
     while (1) {
         u8 key = read_key();
         bool pressed = key >> 7;
@@ -20,35 +21,113 @@ u8 require_key_() {
     }
 }
 
-void draw_cursor(u8 x, u8 y, u32 color) {
+void keys_draw_cursor(u8 x, u8 y, u32 color) {
     pixel_color(color);
     for (int i = 0; i < 5; i++) {
         pixel_plot(x + i, y);
     }
 }
 
-char* input(u8 x, u8 y) {
+char* input(u8 init_x, u8 init_y) {
+    u8 x = init_x;
+    u8 y = init_y;
+    u8 overflow_x;
     term_position_raw(0);
     term_color(0xFFFFFF);
     int length = 0;
     int cursor = 0;
-    char* data_ptr = DATAF;
-    draw_cursor(x, y + 7, CURSOR_COLOR);
-    while(1) {
-        u8 key = require_key_();
+    char* data_ptr = KEYS_DATA;
+    keys_draw_cursor(x, y + 7, CURSOR_COLOR);
+    while (1) {
+        u8 key = keys_require_key();
         if (key == KEY_ENTER) {
             break;
         } else if (key >= ASCII_0 && key <= ASCII_9) {
             if (length == cursor) {
-                DATAF[length] = key;
-                DATAF[length + 1] = 0;
-                term_print_raw(data_ptr + length);
-                draw_cursor(x, y + 7, 0);
-                x += 6;
-                draw_cursor(x, y + 7, CURSOR_COLOR);
+                KEYS_DATA[length] = key;
+                KEYS_DATA[length + 1] = 0;
+                term_print(x, y, data_ptr + length);
+                keys_draw_cursor(x, y + 7, 0);
+                if (x >= 245) {
+                    overflow_x = x;
+                    x = 0;
+                    y += 8;
+                } else {
+                    x += 6;
+                }
+                keys_draw_cursor(x, y + 7, CURSOR_COLOR);
+                ++cursor;
+                ++length;
+            } else {
+                keys_draw_cursor(x, y + 7, 0);
+                term_color(0);
+                term_print(x, y, data_ptr + cursor);
+                term_color(0xFFFFFF);
+                for (int i = length - 1; i >= cursor; i--) {
+                    KEYS_DATA[i + 1] = KEYS_DATA[i];
+                }
+                KEYS_DATA[cursor] = key;
+                KEYS_DATA[++length] = 0;
+                term_print(x, y, data_ptr + cursor);
+                ++cursor;
+                if (x >= 245) {
+                    overflow_x = x;
+                    x = 0;
+                    y += 8;
+                } else {
+                    x += 6;
+                }
+                keys_draw_cursor(x, y + 7, CURSOR_COLOR);
+            }
+        } else if (key == KEY_LEFT) {
+            if (cursor > 0) {
+                keys_draw_cursor(x, y + 7, 0);
+                if (x <= 5) {
+                    x = overflow_x;
+                    y -= 8;
+                } else {
+                    x -= 6;
+                }
+                keys_draw_cursor(x, y + 7, CURSOR_COLOR);
+                --cursor;
+            }
+        } else if (key == KEY_RIGHT) {
+            if (cursor < length) {
+                keys_draw_cursor(x, y + 7, 0);
+                if (x >= 245) {
+                    overflow_x = x;
+                    x = 0;
+                    y += 8;
+                } else {
+                    x += 6;
+                }
+                keys_draw_cursor(x, y + 7, CURSOR_COLOR);
+                ++cursor;
+            }
+        } else if (key == KEY_BACKSPACE) {
+            if (cursor == length) {
+                keys_draw_cursor(x, y + 7, 0);
+                term_color(0);
+                if (x <= 5) {
+                    x = overflow_x;
+                    y -= 8;
+                } else {
+                    x -= 6;
+                }
+                term_print(x, y, data_ptr + length - 1);
+                term_color(0xFFFFFF);
+                KEYS_DATA[length--] = 0;
+                --cursor;
+                keys_draw_cursor(x, y + 7, 0xFFFFFF);
             }
         }
     }
 
-    return DATAF;
+    return KEYS_DATA;
+}
+
+int main() {
+    clear_screen();
+    input(0, 0);
+    return 0;
 }

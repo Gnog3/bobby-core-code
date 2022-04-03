@@ -1,19 +1,32 @@
-import os
+import os, sys
 
+if len(sys.argv) < 2:
+	print('error: no arguments')
+	exit()
 def exit_if_error(r):
 	if r != 0:
 		print(f'Exit with code {r}')
 		exit(r)
 
+
+
 compiler = 'riscv-none-embed-gcc -T risc.ld -nostdlib -march=rv32i -mabi=ilp32 -ffunction-sections -fdata-sections -Wl,--gc-sections -mcmodel=medany -O3 '
-for dirpath, dirnames, filenames in os.walk('src'):
-	for filename in filenames:
-		if filename[-2::] not in ['.c', '.s']:
-			print('Skipping ' + filename)
-			continue
-		file_fullpath = f'{dirpath}/{filename}'
-		print('Adding ' + file_fullpath)
-		compiler += f'"{file_fullpath}" '
+
+def walk(s):
+	global compiler
+
+	for dirpath, dirnames, filenames in os.walk(s):
+		for filename in filenames:
+			if filename[-2::] not in ['.c', '.s']:
+				# print('Skipping ' + filename)
+				continue
+			file_fullpath = f'{dirpath}/{filename}'
+
+			print('Adding ' + file_fullpath + ' (folder: ' + dirpath + ')')
+			compiler += f'"{file_fullpath}" '
+
+walk('src/lib')
+walk('src/' + sys.argv[1])
 
 r = os.system(compiler)
 exit_if_error(r)
