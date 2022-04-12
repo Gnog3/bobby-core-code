@@ -1,5 +1,5 @@
 import os, sys
-
+from pathlib import Path
 if len(sys.argv) < 2:
 	print('error: no arguments')
 	exit()
@@ -10,14 +10,14 @@ def exit_if_error(r):
 
 
 
-compiler = 'riscv-none-embed-gcc -T risc.ld -nostdlib -march=rv32i -mabi=ilp32 -ffunction-sections -fdata-sections -Wl,--gc-sections -mcmodel=medany -O3 '
+compiler = 'riscv-none-embed-gcc -T risc.ld -nostartfiles -march=rv32i -mabi=ilp32 -ffunction-sections -fdata-sections -Wl,--gc-sections -mcmodel=medany -O3 '
 
 def walk(s):
 	global compiler
 
 	for dirpath, dirnames, filenames in os.walk(s):
 		for filename in filenames:
-			if filename[-2::] not in ['.c', '.s']:
+			if Path(filename).suffix not in ['.c', '.s', '.cpp']:
 				# print('Skipping ' + filename)
 				continue
 			file_fullpath = f'{dirpath}/{filename}'

@@ -27,8 +27,8 @@ inline void term_print(u8 posx, u8 posy, char* str) {
 	term_print_raw(str);
 }
 
-inline void clear_screen() {
-    csr_write(1036, 0);
+inline void clear_screen(u32 color) {
+    csr_write(1036, color);
 }
 
 inline void printint(int color, int posx, int posy, int value) 

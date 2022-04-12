@@ -2,7 +2,9 @@ ENTRY(_start);
 
 SECTIONS
 {
-	. = 0x0;
+	. = 0;
+
+	PROVIDE( __global_pointer$ = . + 0x800 );
 
 	.text :
 	{
