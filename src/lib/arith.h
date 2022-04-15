@@ -20,3 +20,5 @@ inline int mul_hi(void)
 {
     return csr_read(1043);
 }
+
+#endif

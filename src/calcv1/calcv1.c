@@ -1,9 +1,9 @@
 #include <stdbool.h>
 
 #include "calcv1.h"
-#include "../output.h"
-#include "../input.h"
-#include "../keydefs.h"
+#include "../lib/output.h"
+#include "../lib/input.h"
+#include "../lib/keydefs.h"
 
 #define ADDITION ASCII_1
 #define SUBTRACTION ASCII_2
@@ -80,11 +80,11 @@ void print_number(u32 number) {
     term_print_raw(str_ptr);
 }
 
-void calc_v1() {
+void main() {
 #pragma clang diagnostic push
 #pragma ide diagnostic ignored "EndlessLoop"
     while (1) {
-        clear_screen();
+        clear_screen(0);
         term_color(0xFFFFFF);
         term_print(0, 0, "Calculator v1");
         term_print(0, 8, "1. Addition");
