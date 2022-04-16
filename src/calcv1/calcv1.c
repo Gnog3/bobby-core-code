@@ -90,18 +90,19 @@ void main() {
         term_print(0, 8, "1. Addition");
         term_print(0, 16, "2. Subtraction");
         term_print(0, 24, "3. Multiplication");
+        term_print(0, 32, "4. Division");
         u8 operation;
         while (1) {
             u8 key = require_key();
-            if (key >= ASCII_1 && key <= ASCII_3) {
+            if (key >= ASCII_1 && key <= ASCII_4) {
                 operation = key;
                 break;
             }
         }
         term_print(0, 40, "First number: ");
-        int number1 = require_number();
+        unsigned int number1 = require_number();
         term_print(0, 48, "Second number: ");
-        int number2 = require_number();
+        unsigned int number2 = require_number();
 
         int result;
         switch (operation) {
@@ -113,6 +114,9 @@ void main() {
                 break;
             case MULTIPLICATION:
                 result = number1 * number2;
+                break;
+            case DIVISION:
+                result = number1 / number2;
                 break;
         }
         term_print(0, 56, "Result: ");
