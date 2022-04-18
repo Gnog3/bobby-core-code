@@ -41,7 +41,7 @@ inline void printint(int color, int posx, int posy, int value)
 	csr_write(1027, value);	
 }
 
-inline void drawline(int color, int posx0, int posy0, int posx1, int posy1 ) 
+inline void drawline(int color, u8 posx0, u8 posy0, u8 posx1, u8 posy1 ) 
 {
     csr_write(1028, color);
 	int verts =  ((posy1 << 24)|(posx1 << 16)|(posy0 << 8) | posx0);
@@ -73,5 +73,7 @@ inline void pixel_plot(u8 x, u8 y) {
 inline void debug(int value) {
     csr_write(0, value);
 }
+
+
 
 #endif
