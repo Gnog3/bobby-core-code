@@ -1,4 +1,6 @@
+from time import sleep
 import os, sys
+
 from pathlib import Path
 if len(sys.argv) < 2:
 	print('error: no arguments')
@@ -12,6 +14,14 @@ def exit_if_error(r):
 
 compiler = 'riscv-none-embed-gcc -T risc.ld -nostartfiles -march=rv32i -mabi=ilp32 -ffunction-sections -fdata-sections -Wl,--gc-sections -mcmodel=medany -O3 '
 
+def highLoadTest(time):
+	print('Performing tests...')
+	try:
+		while True:
+			walk(15)
+	except:
+		print('Test failed!!!')
+	
 def walk(s):
 	global compiler
 
