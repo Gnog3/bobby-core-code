@@ -17,12 +17,12 @@ inline void term_position(u8 posx, u8 posy) {
 	term_position_raw(pos);
 }
 
-inline void term_print_raw(char* str) {
+inline void term_print_raw(const char* str) {
 	csr_write(1026, str);
 	__asm__("nop");
 }
 
-inline void term_print(u8 posx, u8 posy, char* str) {
+inline void term_print(u8 posx, u8 posy, const char* str) {
 	term_position(posx, posy);
 	term_print_raw(str);
 }

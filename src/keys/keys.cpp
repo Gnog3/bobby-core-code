@@ -25,10 +25,10 @@ u8 keys_require_key()
 
 void keys_draw_cursor(u8 x, u8 y, u32 color)
 {
-    pixel_color(color);
-    for (int i = 0; i < 5; i++) {
-        pixel_plot(x + i, y);
-    }
+    // pixel_color(color);
+    // for (int i = 0; i < 5; i++) {
+    //     pixel_plot(x + i, y);
+    // }
 }
 
 class Input {
@@ -143,10 +143,10 @@ void input(u8 init_x, u8 init_y, char* data)
     term_color(0xFFFFFF);
     while (1) {
         u8 key = keys_require_key();
-        if (key == KEY_ENTER) {
-            break;
-        } else if (key >= ASCII_0 && key <= ASCII_9) {
+        if (key >= ASCII_0 && key <= ASCII_9) {
             input.input(key);
+        } else if (key == KEY_ENTER) {
+            break;
         } else if (key == KEY_LEFT) {
             input.cursor_left();
         } else if (key == KEY_RIGHT) {

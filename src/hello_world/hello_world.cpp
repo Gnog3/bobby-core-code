@@ -1,39 +1,19 @@
+#include <stdint.h>
+
 #include "../lib/output.h"
-#include "../lib/csr.h"
-#include <array>
-class Abc {
-private:
-    int a;
-public:
-    Abc(int a) : a(a) {}
-    int get_a() {
-        return a;
-    }
-};
-const u32 colors[] = {
-        0,
-        0xFF,
-        0xFF00,
-        0xFFFF,
-        0xFF0000,
-        0xFF00FF,
-        0xFFFF00,
-        0xFFFFFF
-};
-
+#include "../lib/program_size.h"
+#include "../lib/hex/hex.h"
+#include <cstdio>
 int main() {
-    std::array<int, 18> arr = {0};
+    printf("123");
+    // clear_screen(0);
+    // term_color(0xFFFFFF);
+    // term_print(0, 0, "Hello, world!");
+    // uint32_t size = program_size();
+    // char str[17] = {'S', 'i', 'z', 'e', ':', ' ', '0', 'x'};
+    // str[16] = 0;
+    // int_to_hex_str(size, &str[8]);
+    // term_print(0, 8, str);
 
-    for (auto i : arr) {
-        csr_write(0, i);
-    }
-
-//    clear_screen(0x0000FF);
-//    term_color(0xFFFFFF);
-//    char* str = "Hello, worldSomerandomstringnottoberendered";
-//    int length = 12;
-//    char* end = str + length;
-//    csr_write(1037, end);
-//    term_print(0, 0, str);
-//    return 0;
+    // int a = ({5;});
 }

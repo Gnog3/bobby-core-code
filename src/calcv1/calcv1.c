@@ -9,6 +9,7 @@
 #define SUBTRACTION ASCII_2
 #define MULTIPLICATION ASCII_3
 #define DIVISION ASCII_4
+#define MODULO ASCII_5
 
 u8 require_key() {
     while (1) {
@@ -91,17 +92,18 @@ void main() {
         term_print(0, 16, "2. Subtraction");
         term_print(0, 24, "3. Multiplication");
         term_print(0, 32, "4. Division");
+        term_print(0, 40, "5. Modulo");
         u8 operation;
         while (1) {
             u8 key = require_key();
-            if (key >= ASCII_1 && key <= ASCII_4) {
+            if (key >= ASCII_1 && key <= ASCII_5) {
                 operation = key;
                 break;
             }
         }
-        term_print(0, 40, "First number: ");
+        term_print(0, 48, "First number: ");
         unsigned int number1 = require_number();
-        term_print(0, 48, "Second number: ");
+        term_print(0, 56, "Second number: ");
         unsigned int number2 = require_number();
 
         int result;
@@ -118,8 +120,11 @@ void main() {
             case DIVISION:
                 result = number1 / number2;
                 break;
+            case MODULO:
+                result = number1 % number2;
+                break;
         }
-        term_print(0, 56, "Result: ");
+        term_print(0, 72, "Result: ");
         print_number(result);
         while (require_key() != KEY_ENTER) {}
     }

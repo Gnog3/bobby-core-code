@@ -23,4 +23,6 @@ SECTIONS
 	{
 		*(.bss)
 	}
+
+	PROVIDE( STATIC_PROGRAM_SIZE = .);
 }

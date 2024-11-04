@@ -9,6 +9,8 @@ inline void send_mul(uint32_t valA, uint32_t valB)
 {
 	csr_write(1040, valA);
 	csr_write(1041, valB);
+	
+
 	__asm__("nop");	
 }
 
