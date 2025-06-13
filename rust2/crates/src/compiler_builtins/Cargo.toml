@@ -1,0 +1,11 @@
+[package]
+name = "compiler_builtins"
+version = "0.1.149"
+edition = "2024"
+
+[dependencies]
+
+[features]
+mem = []
+compiler-builtins = []
+rustc-dep-of-std = []

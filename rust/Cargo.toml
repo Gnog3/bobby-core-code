@@ -1,0 +1,11 @@
+[workspace]
+resolver = "2"
+members = [
+    "src/hello-world",
+    "src/rt",
+]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[profile.release]
+lto = true

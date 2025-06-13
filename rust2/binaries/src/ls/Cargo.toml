@@ -1,0 +1,11 @@
+[package]
+name = "ls"
+edition = "2024"
+
+[dependencies]
+bin-panic-handler = { path = "../../../crates/src/bin-panic-handler" }
+heap = { path = "../../../crates/src/heap" }
+console = { path = "../../../crates/src/console" }
+fs = { path = "../../../crates/src/fs" }
+blib = { path = "../../../crates/src/blib" }
+init-fns = { path = "../../../crates/src/init-fns" }

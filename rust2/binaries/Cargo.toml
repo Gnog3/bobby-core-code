@@ -1,0 +1,7 @@
+[workspace]
+resolver = "2"
+members = ["src/init", "src/ls"]
+
+[profile.release]
+lto = true
+codegen-units = 1

@@ -8,7 +8,7 @@ SECTIONS
 
 	.text :
 	{
-		*(.text._start)
+		*(.text._actual_start)
 		*(.text)
 	}
 	.data :
@@ -19,10 +19,11 @@ SECTIONS
 	{
 		*(.rodata)
 	}
+	PROVIDE( __bss_start = .);
 	.bss :
 	{
 		*(.bss)
 	}
-
+	PROVIDE( _end = .);
 	PROVIDE( STATIC_PROGRAM_SIZE = .);
 }

@@ -1,0 +1,7 @@
+[package]
+name = "fs"
+edition = "2024"
+
+[dependencies]
+bobby-fs-common = { path = "../../../bobby-fs-common" }
+blib = { path = "../blib" }

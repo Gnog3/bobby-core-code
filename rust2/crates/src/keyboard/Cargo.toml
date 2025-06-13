@@ -1,0 +1,5 @@
+[package]
+name = "keyboard"
+edition = "2024"
+
+[dependencies]

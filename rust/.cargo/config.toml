@@ -1,0 +1,13 @@
+[target.riscv32i-unknown-none-elf]
+rustflags = [
+    "-C", "link-arg=-Tres/memory.ld",   # Add linker script "{projectdir}/res/memory.ld"
+    # "-C", "link-arg=--warn-unresolved-symbols",
+    "-C", "link-arg=-shared",
+    "-C", "relocation-model=pic",
+]
+
+[build]
+target = "riscv32i-unknown-none-elf"    # Select target (valid targets can be found by "rustup target list")
+
+[unstable]
+build-std = ["core", "alloc"]

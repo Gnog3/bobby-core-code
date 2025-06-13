@@ -1,0 +1,10 @@
+[package]
+name = "bobby-fs"
+edition = "2021"
+
+[dependencies]
+bytemuck = { version = "1.20.0", features = ["must_cast", "derive"] }
+bobby-fs-common = { path = "../bobby-fs-common" }
+
+[dev-dependencies]
+rand = { version = "0.8.5", features = ["small_rng"] }

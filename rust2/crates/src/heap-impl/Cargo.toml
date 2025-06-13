@@ -1,0 +1,9 @@
+[package]
+name = "heap-impl"
+edition = "2024"
+
+[dependencies]
+blib = { path = "../blib" }
+
+embedded-alloc = { version = "0.6.0", default-features = false, features = ["llff"] }
+critical-section = "1.0"

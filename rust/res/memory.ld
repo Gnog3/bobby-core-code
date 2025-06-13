@@ -1,0 +1,32 @@
+/*
+Source: https://sourceware.org/binutils/docs/ld/Scripts.html
+Source: https://docs.rs/riscv-rt/latest/riscv_rt/
+Source: https://docs.rust-embedded.org/embedonomicon/memory-layout.html
+*/
+
+/* Define memory layout (RAM only architecture) */
+MEMORY {
+    RAM : ORIGIN = 0x00000000, LENGTH =  16M
+}
+
+/* Define sections */
+SECTIONS {
+    . = ORIGIN(RAM);
+    .init : { *(.init) } > REGION_INIT /* Set init as first section, this is the program's entry point if the PC starts at zero */
+    .text : { *(.text .text.*) } > REGION_TEXT
+    .rodata : { *(.rodata) } > REGION_RODATA
+    .data : { *(.data) } > REGION_DATA
+    .plt : { *(.plt) } > REGION_PLT
+    .got.plt : { *(.got.plt) } > REGION_GOT_PLT
+    .dynsym : { *(.dynsym) } > REGION_DYNSYM
+    . = ALIGN(4);
+}
+
+/* Set aliases (since this is a RAM only architecture, all regions are in RAM) */
+REGION_ALIAS("REGION_INIT", RAM);
+REGION_ALIAS("REGION_TEXT", RAM);
+REGION_ALIAS("REGION_RODATA", RAM);
+REGION_ALIAS("REGION_DATA", RAM);
+REGION_ALIAS("REGION_PLT", RAM);
+REGION_ALIAS("REGION_GOT_PLT", RAM);
+REGION_ALIAS("REGION_DYNSYM", RAM);

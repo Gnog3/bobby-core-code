@@ -1,0 +1,6 @@
+[package]
+name = "init-fns"
+edition = "2024"
+
+[dependencies]
+blib = { path = "../blib" }

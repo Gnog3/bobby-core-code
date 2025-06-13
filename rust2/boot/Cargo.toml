@@ -1,0 +1,15 @@
+[package]
+name = "boot"
+edition = "2024"
+
+[dependencies]
+blib = { path = "../crates/src/blib" }
+heap-impl = { path = "../crates/src/heap-impl" }
+fs-impl = { path = "../crates/src/fs-impl" }
+binary = { path = "../crates/src/binary" }
+bytemuck = { version = "1.20.0", features = ["must_cast", "derive"] }
+include_bytes_aligned = "0.1.4"
+
+[profile.release]
+lto = true
+codegen-units = 1

@@ -1,0 +1,8 @@
+[package]
+name = "hello-world"
+edition = "2021"
+
+[dependencies]
+rt = {path = "../rt"}
+log = "0.4"
+fatfs = { git = "https://github.com/rafalh/rust-fatfs", default-features = false }

@@ -1,0 +1,5 @@
+[package]
+name = "blib"
+edition = "2024"
+
+[dependencies]

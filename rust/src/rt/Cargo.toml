@@ -1,0 +1,9 @@
+[package]
+name = "rt"
+edition = "2021"
+
+[dependencies]
+embedded-alloc = { version = "0.6.0", default-features = false, features = ["llff"] }
+critical-section = "1.0"
+log = { version = "0.4", features = ["max_level_info"] }
+fatfs = { git = "https://github.com/rafalh/rust-fatfs", default-features = false, features = ["alloc", "lfn"] }

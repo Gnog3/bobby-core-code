@@ -1,0 +1,6 @@
+[package]
+name = "console"
+edition = "2024"
+
+[dependencies]
+blib = { path = "../blib" }

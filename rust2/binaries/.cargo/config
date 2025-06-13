@@ -1,0 +1,6 @@
+[target.riscv32i-unknown-none-elf]
+rustflags = [
+    "-C", "link-arg=-T../res/memory.ld",
+    "-C", "link-arg=-shared",
+    "-C", "relocation-model=pic",
+]

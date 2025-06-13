@@ -1,0 +1,52 @@
+Main {
+    kind: PageKind (Main): 4 bytes
+    total_page_count: u32: 4 bytes
+    free_page_count: u32: 4 bytes
+    next_free_page: Page? (Free): 4 bytes
+    unused: [u8; 496]: 492 bytes
+}
+
+File {
+    kind: PageKind (File): 4 bytes
+    parent: Page (Directory): 4 bytes
+    in_use: u32: 4 bytes
+    left_child: Page? (File or Directory) : 4 bytes
+    right_child: Page? (File or Directory) : 4 bytes
+    height: u32: 4 bytes
+    size: u32: 4 bytes
+    name_len: u32: 4 bytes
+    name: [u8; 92]: 92 bytes
+    
+    pages: [Page? (FileData); 96]: 384 bytes
+    next_pages: Page? (PageList): 4 bytes 
+}
+
+PageList {
+    pages: [Page? (FileData); 126]: 504 bytes
+    prev_pages: Page: 4 bytes (File or PageList)
+    next_pages: Page? (PageList): 4 bytes
+}
+
+FileData {
+    data: [u8; 512] // 512 bytes
+}
+
+Directory {
+    kind: PageKind (Directory): 4 bytes
+    parent: Page? (Directory): 4 bytes
+    in_use: u32: 4 bytes
+    left_child: Page? (File or Directory) : 4 bytes
+    right_child: Page? (File or Directory) : 4 bytes
+    height: u32: 4 bytes
+    contents: Page? (File or Directory) : 4 bytes
+    name_len: u32: 4 bytes
+    name: [u8; 92]: 92 bytes
+
+    unused: [u8; 388]: 388 bytes
+}
+
+Free {
+    next_free_page: Page? (Free): 4 bytes
+
+    unused: [u8; 508]: 508 bytes
+}

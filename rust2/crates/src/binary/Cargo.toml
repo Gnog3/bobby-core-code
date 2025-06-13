@@ -1,0 +1,7 @@
+[package]
+name = "binary"
+edition = "2024"
+
+[dependencies]
+fs = { path = "../fs" }
+blib = { path = "../blib" }

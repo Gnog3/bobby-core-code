@@ -1,0 +1,12 @@
+[workspace]
+resolver = "2"
+members = [
+    "src/console",
+    "src/bin-panic-handler",
+    "src/blib",
+    "src/compiler_builtins",
+    "src/fs",
+    "src/fs-impl",
+    "src/heap",
+    "src/heap-impl", "src/keyboard", "src/binary", "src/init-fns",
+]

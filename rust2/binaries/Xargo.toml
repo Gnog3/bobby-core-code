@@ -1,0 +1,8 @@
+[dependencies.core]
+stage = 0
+
+[dependencies.alloc]
+stage = 1
+
+[patch.crates-io.compiler_builtins]
+path = "../crates/src/compiler_builtins"

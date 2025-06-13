@@ -1,0 +1,11 @@
+[package]
+name = "init"
+edition = "2024"
+
+[dependencies]
+blib = { path = "../../../crates/src/blib" }
+bin-panic-handler = { path = "../../../crates/src/bin-panic-handler" }
+heap = { path = "../../../crates/src/heap" }
+console = { path = "../../../crates/src/console" }
+fs = { path = "../../../crates/src/fs" }
+binary = { path = "../../../crates/src/binary" }

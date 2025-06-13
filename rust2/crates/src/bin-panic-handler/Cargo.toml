@@ -1,0 +1,6 @@
+[package]
+name = "bin-panic-handler"
+edition = "2024"
+
+[dependencies]
+blib ={ path = "../blib" }
