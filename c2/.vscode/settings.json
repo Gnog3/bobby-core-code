@@ -1,0 +1,9 @@
+{
+    "clangd.fallbackFlags": [
+        "-I/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include",
+        "--language=c",
+        "-I${workspaceFolder}/src/include",
+        "-std=c23",
+        "-D__USE_MISC"
+    ]
+}

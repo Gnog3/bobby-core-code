@@ -1,0 +1,32 @@
+{
+    "boot": {
+        "files": [
+            "src/boot/_start.s",
+            "src/boot/crt/mulsi3.s",
+            "src/boot/crt/div.s",
+            "src/boot/crt/crt.c",
+            "src/boot/debug/dbg.c",
+            "src/boot/fmt.c",
+            "src/boot/main.c"
+        ]
+    },
+    "bin": [
+        {
+            "name": "hello-world",
+            "files": [
+                "src/bin/hello-world/main.c"
+            ]
+        }
+    ],
+    "blob": {
+        "tasks": [
+            "compile-hello-world"
+        ],
+        "folders": [],
+        "files": [
+            "out/bin/hello-world/hello-world"
+        ],
+        "target": "out/blob/blob",
+        "b64": "out/blob/base64.txt"
+    }
+}
